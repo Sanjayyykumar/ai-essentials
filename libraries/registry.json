@@ -1,0 +1,312 @@
+{
+ "local_root_env": "AI_LIBRARY_ROOT",
+ "items": [
+  {
+   "id": "e2eengine",
+   "domain": "engineering",
+   "use": "SD1/SD2/SD3 engineering system, 41 specialist skills (backend, api, db, devops, security, qa, ui-ux, seo, motion, lottie, vector)",
+   "upstream": "github.com/Creativestarjsp/e2eskill",
+   "license": "MIT",
+   "local_path": "01-engineering-workflow/e2eengine-main",
+   "entry": "CLAUDE.md; skills/<name>/SKILL.md"
+  },
+  {
+   "id": "skills-main",
+   "domain": "engineering",
+   "use": "Matt Pocock skills: tdd, diagnosing-bugs, code-review, to-spec, to-tickets, grilling, handoff, prototype",
+   "upstream": "github.com/mattpocock/skills",
+   "license": "MIT",
+   "local_path": "01-engineering-workflow/skills-main",
+   "entry": "skills/<group>/<name>/SKILL.md"
+  },
+  {
+   "id": "karpathy-guidelines",
+   "domain": "engineering",
+   "use": "Think first, simplicity, surgical changes, goal-driven coding",
+   "upstream": "github.com/forrestchang/andrej-karpathy-skills",
+   "license": "MIT",
+   "local_path": "01-engineering-workflow/andrej-karpathy-skills-main",
+   "entry": "CLAUDE.md"
+  },
+  {
+   "id": "claude-plugins-official",
+   "domain": "engineering",
+   "use": "Anthropic official plugin directory (security etc.)",
+   "upstream": "github.com/anthropics/claude-plugins-official",
+   "license": "Apache-2.0",
+   "local_path": "01-engineering-workflow/claude-plugins-official-main",
+   "entry": "plugins/<name>/"
+  },
+  {
+   "id": "agent-skills",
+   "domain": "database",
+   "use": "Supabase + Postgres best practices (33 rules)",
+   "upstream": "github.com/supabase/agent-skills",
+   "license": "MIT",
+   "local_path": "01-engineering-workflow/agent-skills-main",
+   "entry": "skills/supabase-postgres-best-practices/references/"
+  },
+  {
+   "id": "playwright-cli",
+   "domain": "testing",
+   "use": "Browser automation, UI tests, screenshots, traces",
+   "upstream": "github.com/microsoft/playwright-cli",
+   "license": "Apache-2.0",
+   "local_path": "02-testing-browser-security/playwright-cli-main",
+   "entry": "skills/playwright-cli/SKILL.md"
+  },
+  {
+   "id": "rea",
+   "domain": "recon",
+   "use": "Reverse-engineer binaries, Electron, firmware",
+   "upstream": "github.com/morluto/rea",
+   "license": "MIT",
+   "local_path": "02-testing-browser-security/rea-main",
+   "entry": ".agents/skills/reverse-engineer-anything/SKILL.md"
+  },
+  {
+   "id": "humanizer",
+   "domain": "content",
+   "use": "Remove AI writing tells (26 patterns)",
+   "upstream": "github.com/blader/humanizer",
+   "license": "MIT",
+   "local_path": "03-writing-content-seo/humanizer-main",
+   "entry": "SKILL.md"
+  },
+  {
+   "id": "open-seo",
+   "domain": "content",
+   "use": "Keyword research, audits, local SEO, AI visibility (needs OpenSEO server)",
+   "upstream": "github.com/every-app/open-seo (verify)",
+   "license": "MIT",
+   "local_path": "03-writing-content-seo/open-seo-main",
+   "entry": "plugins/openseo/skills/"
+  },
+  {
+   "id": "diagram-design",
+   "domain": "design",
+   "use": "Editorial HTML/SVG architecture, flow, sequence, ER diagrams",
+   "upstream": "github.com/cathrynlavery/diagram-design",
+   "license": "MIT",
+   "local_path": "04-design-diagrams-frontend/diagram-design-main",
+   "entry": "skills/diagram-design/SKILL.md"
+  },
+  {
+   "id": "reanimate",
+   "domain": "animation",
+   "use": "Clone animations/sections from site, video, gif, Lottie",
+   "upstream": "(see LICENSE/README)",
+   "license": "MIT",
+   "local_path": "04-design-diagrams-frontend/reanimate-main",
+   "entry": "skills/reanimate/SKILL.md"
+  },
+  {
+   "id": "shaders",
+   "domain": "animation",
+   "use": "WebGPU effects for React/Vue/Svelte (npm shaders)",
+   "upstream": "npm: shaders",
+   "license": "MIT",
+   "local_path": "04-design-diagrams-frontend/shaders-main",
+   "entry": "skills/shaders/SKILL.md"
+  },
+  {
+   "id": "take-one",
+   "domain": "video",
+   "use": "Full short film from a request (12-role studio)",
+   "upstream": "github.com/talsiach/take-one",
+   "license": "MIT",
+   "local_path": "05-video-motion/take-one-main",
+   "entry": "SKILL.md"
+  },
+  {
+   "id": "video-director",
+   "domain": "video",
+   "use": "Code-rendered short videos (HTML/Canvas/GSAP/Three.js)",
+   "upstream": "github.com/win4r/video-director",
+   "license": "MIT",
+   "local_path": "05-video-motion/video-director-main",
+   "entry": "video-director/SKILL.md"
+  },
+  {
+   "id": "huashu-motion",
+   "domain": "video",
+   "use": "Product launch / motion graphics videos",
+   "upstream": "github.com/alchaincyf/huashu-motion",
+   "license": "MIT",
+   "local_path": "05-video-motion/huashu-motion-main",
+   "entry": "skills/huashu-motion/SKILL.md"
+  },
+  {
+   "id": "explainroo",
+   "domain": "video",
+   "use": "Explainer MP4 with local voice-over",
+   "upstream": "(see README)",
+   "license": "MIT",
+   "local_path": "05-video-motion/explainroo-main",
+   "entry": "skills/explainroo/SKILL.md"
+  },
+  {
+   "id": "argo",
+   "domain": "video",
+   "use": "Product demo videos from Playwright scripts + voiceover",
+   "upstream": "(see README)",
+   "license": "MIT",
+   "local_path": "05-video-motion/argo-main",
+   "entry": "skills/argo-guide/SKILL.md"
+  },
+  {
+   "id": "rossark-motion",
+   "domain": "animation",
+   "use": "Character/illustration motion",
+   "upstream": "(see README)",
+   "license": "MIT",
+   "local_path": "05-video-motion/rossark-motion-skill-main",
+   "entry": "SKILL.md"
+  },
+  {
+   "id": "earshot",
+   "domain": "audio",
+   "use": "Judge/choose sound; licensed soundtracks",
+   "upstream": "github.com/Leonxlnx/earshot",
+   "license": "MIT",
+   "local_path": "06-audio-voice/earshot-main",
+   "entry": "skills/earshot/; skills/real-sound/"
+  },
+  {
+   "id": "voicestudio",
+   "domain": "audio",
+   "use": "Local TTS, voice design, transcription, dubbing",
+   "upstream": "github.com/debpalash/VoiceStudio",
+   "license": "AGPL-3.0 (copyleft — do not vendor)",
+   "local_path": "06-audio-voice/VoiceStudio-main",
+   "entry": "skills/voicestudio/SKILL.md"
+  },
+  {
+   "id": "kimi-audio",
+   "domain": "audio",
+   "use": "Kimi-Audio-7B: ASR, audio understanding, generation (big NVIDIA GPU)",
+   "upstream": "github.com/MoonshotAI/Kimi-Audio",
+   "license": "see repo",
+   "local_path": "06-audio-voice/Kimi-Audio-master",
+   "entry": "README.md; infer.py"
+  },
+  {
+   "id": "gws-cli",
+   "domain": "integrations",
+   "use": "Google Workspace CLI + 40 recipes",
+   "upstream": "github.com/googleworkspace/cli",
+   "license": "Apache-2.0",
+   "local_path": "07-integrations/cli-main",
+   "entry": "skills/"
+  },
+  {
+   "id": "laya",
+   "domain": "research",
+   "use": "Non-autoregressive decision models (research code)",
+   "upstream": "github.com/NandhaKishorM/laya",
+   "license": "Apache-2.0",
+   "local_path": "08-ai-ml-research/laya-main",
+   "entry": "README.md"
+  },
+  {
+   "id": "transformers",
+   "domain": "research",
+   "use": "Hugging Face Transformers v5 (reference; pip install transformers)",
+   "upstream": "github.com/huggingface/transformers",
+   "license": "Apache-2.0",
+   "local_path": "08-ai-ml-research/transformers-main",
+   "entry": "docs/source/en/"
+  },
+  {
+   "id": "kokoro-onnx",
+   "domain": "audio",
+   "use": "Offline TTS model used by the video pipeline",
+   "upstream": "github.com/thewh1teagle/kokoro-onnx",
+   "license": "MIT (model: Apache-2.0)",
+   "local_path": "",
+   "entry": "VIDEO_ROOT/models (setup downloads it)"
+  },
+  {
+   "id": "media-studio",
+   "domain": "media",
+   "use": "Router + engines for any image/audio/video job (start here)",
+   "upstream": "local (this hub)",
+   "license": "MIT",
+   "local_path": "",
+   "entry": "studio/SYSTEM.md"
+  },
+  {
+   "id": "lemo-opuscar",
+   "domain": "video",
+   "use": "66 code-rendered film styles (watercolor, pixel RPG, ukiyo-e...)",
+   "upstream": "github.com/lemomo-ai/lemo-opuscar",
+   "license": "MIT",
+   "local_path": "05-video-motion/lemo-opuscar",
+   "entry": "README.md; styles/"
+  },
+  {
+   "id": "remotion-skills",
+   "domain": "video",
+   "use": "Official Remotion skills: React -> MP4 (company license needed for larger teams)",
+   "upstream": "github.com/remotion-dev/skills",
+   "license": "see repo",
+   "local_path": "05-video-motion/remotion-skills",
+   "entry": "skills/remotion-best-practices/SKILL.md"
+  },
+  {
+   "id": "claude-code-video-toolkit",
+   "domain": "video",
+   "use": "digitalsamba: brief -> QC'd MP4 job runner + 17 skills (remotion, ffmpeg, elevenlabs, ltx2, acestep, runpod)",
+   "upstream": "github.com/digitalsamba/claude-code-video-toolkit",
+   "license": "MIT",
+   "local_path": "05-video-motion/claude-code-video-toolkit",
+   "entry": "skills/video-toolkit/SKILL.md"
+  },
+  {
+   "id": "manim-skill",
+   "domain": "video",
+   "use": "Manim 3Blue1Brown-style math/tech animation",
+   "upstream": "github.com/Yusuke710/manim-skill",
+   "license": "MIT",
+   "local_path": "05-video-motion/manim-skill-main",
+   "entry": "skills/manim-skill/SKILL.md"
+  },
+  {
+   "id": "claude-code-video-toolkit-list",
+   "domain": "video",
+   "use": "wilwaldon curated list of video skills/MCPs",
+   "upstream": "github.com/wilwaldon/Claude-Code-Video-Toolkit",
+   "license": "MIT",
+   "local_path": "05-video-motion/Claude-Code-Video-Toolkit-main",
+   "entry": "README.md"
+  },
+  {
+   "id": "chatterbox",
+   "domain": "audio",
+   "use": "Chatterbox TTS + voice cloning (consent only); slow on CPU",
+   "upstream": "github.com/resemble-ai/chatterbox",
+   "license": "MIT",
+   "local_path": "06-audio-voice/chatterbox-master",
+   "entry": "README.md"
+  },
+  {
+   "id": "coqui-xtts",
+   "domain": "audio",
+   "use": "Coqui TTS / XTTS v2 multilingual cloning",
+   "upstream": "github.com/coqui-ai/TTS",
+   "license": "MPL-2.0 code; XTTS weights CPML non-commercial",
+   "local_path": "06-audio-voice/cog-xtts-dev",
+   "entry": "README.md"
+  },
+  {
+   "id": "free-voice-clone",
+   "domain": "audio",
+   "use": "Catalogue of open TTS/voice-clone/music models",
+   "upstream": "github.com/0xSojalSec/free-voice-clone",
+   "license": "see repo",
+   "local_path": "06-audio-voice/free-voice-clone-main",
+   "entry": "README.md"
+  }
+ ],
+ "default_local_root": "vendor/library"
+}

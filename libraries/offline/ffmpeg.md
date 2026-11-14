@@ -1,0 +1,13 @@
+# ffmpeg cheat sheet
+- Inspect: `ffprobe -v error -show_entries format=duration:stream=codec_name,width,height,r_frame_rate -of json in.mp4`
+- Trim (fast, keyframe): `ffmpeg -ss 00:00:05 -to 00:00:20 -i in.mp4 -c copy out.mp4` · exact: drop `-c copy`, add `-c:v libx264 -preset veryfast -crf 20`
+- Concat same codec: list.txt `file 'a.mp4'` → `ffmpeg -f concat -safe 0 -i list.txt -c copy out.mp4`
+- Frames → video: `ffmpeg -framerate 30 -i f_%05d.png -c:v libx264 -pix_fmt yuv420p -preset veryfast -crf 18 out.mp4`
+- Resize/pad 9:16: `-vf "scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2"`
+- Speed 2x: `-filter_complex "[0:v]setpts=0.5*PTS[v];[0:a]atempo=2[a]" -map [v] -map [a]`
+- Burn captions: `-vf subtitles=cap.srt:force_style='FontName=Inter,FontSize=24'`
+- Duck music under voice: `-filter_complex "[1:a][0:a]sidechaincompress=threshold=0.05:ratio=8[m];[0:a][m]amix=2:duration=first"`
+- Loudness: `-af loudnorm=I=-14:TP=-1.5:LRA=11`
+- GIF: `-vf "fps=15,scale=640:-1:flags=lanczos,split[a][b];[a]palettegen[p];[b][p]paletteuse"`
+- Alpha WebM: `-c:v libvpx-vp9 -pix_fmt yuva420p` · ProRes 4444: `-c:v prores_ks -profile:v 4444`
+- Thumbnail: `ffmpeg -ss 3 -i in.mp4 -frames:v 1 thumb.jpg`

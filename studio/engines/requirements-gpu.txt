@@ -1,0 +1,12 @@
+# install torch first with the CUDA wheel (see setup_gpu.ps1), then:
+diffusers>=0.35
+transformers
+accelerate
+safetensors
+sentencepiece
+protobuf
+soundfile
+imageio[ffmpeg]
+ftfy
+git+https://github.com/huggingface/parler-tts.git
+chatterbox-tts

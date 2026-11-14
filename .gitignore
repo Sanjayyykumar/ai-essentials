@@ -1,0 +1,22 @@
+STATUS.md
+!templates/STATUS.md
+recon/cache/
+__pycache__/
+*.mp4
+*.wav
+*.onnx
+*.bin
+.env
+
+# --- Bundles / archives ---
+*.tgz
+*.zip
+
+# --- Third-party library copy (786 MB, 32k files, own licences).
+# Re-create from libraries/registry.json + scripts/setup.ps1 instead of committing.
+vendor/
+
+# --- OS junk ---
+Thumbs.db
+desktop.ini
+.DS_Store
