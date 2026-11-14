@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🧠 ai-essentials
+# 🧠 A.I-essentials
 
 ### One folder that turns any AI agent into a disciplined teammate — for code, video, design, audio and research.
 
