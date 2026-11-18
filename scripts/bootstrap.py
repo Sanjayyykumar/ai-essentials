@@ -41,6 +41,15 @@ def refresh_path():
     links = os.path.expandvars(r"%LOCALAPPDATA%\Microsoft\WinGet\Links")
     os.environ["PATH"] = ";".join(parts + [links, os.environ.get("PATH", "")])
 
+def get_env(name):
+    """Env var from this process, else the saved Windows user value (shells opened before setx don't have it)."""
+    v = os.environ.get(name)
+    if v or not WIN: return v
+    import winreg
+    try:
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Environment") as k: return winreg.QueryValueEx(k, name)[0] or None
+    except OSError: return None
+
 def set_env(name, value, check):
     os.environ[name] = value
     if check: return
@@ -90,10 +99,10 @@ def main():
         p.add_argument("--" + f, action="store_true")
     p.add_argument("--video-root"); a = p.parse_args()
     print(f"AI Essentials bootstrap · {platform.system()} {platform.release()} · Python {platform.python_version()}")
-    lib = os.environ.get("AI_LIBRARY_ROOT") or os.path.join(HUB, "vendor", "library")
+    lib = get_env("AI_LIBRARY_ROOT") or os.path.join(HUB, "vendor", "library")
     step("environment"); set_env("AI_HUB_ROOT", HUB, a.check); set_env("AI_LIBRARY_ROOT", lib, a.check)
     repo0 = MAN["repos"][0]
-    vroot = exp(a.video_root or os.environ.get(repo0["env"]) or repo0["default_dir"]); set_env(repo0["env"], vroot, a.check)
+    vroot = exp(a.video_root or get_env(repo0["env"]) or repo0["default_dir"]); set_env(repo0["env"], vroot, a.check)
     for k in ("AI_HUB_ROOT", "AI_LIBRARY_ROOT", "VIDEO_ROOT"): log("env", f"{k}={os.environ[k]}", "ok")
 
     if not a.skip_tools:
@@ -103,7 +112,7 @@ def main():
     if not a.skip_studio:
         step("video studio")
         for r in MAN["repos"]:
-            d = exp(os.environ.get(r["env"]) or r["default_dir"])
+            d = exp(get_env(r["env"]) or r["default_dir"])
             if not os.path.exists(os.path.join(d, "studio")):
                 if os.path.exists(d) and os.listdir(d) and not a.check:
                     log("studio", f"{d} exists without the studio: clone {r['url']} there", "FAILED"); continue
