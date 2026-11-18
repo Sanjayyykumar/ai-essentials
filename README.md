@@ -29,7 +29,7 @@ flowchart LR
   T[Your task] --> A[AI.md<br/>router]
   A --> P[playbooks/<br/>video · dev · design · audio · svg · logo · content]
   A --> R[recon/<br/>unknown tech → research first]
-  P --> L[libraries/<br/>34 indexed tools + offline cheat sheets]
+  P --> L[libraries/<br/>40 indexed tools + offline cheat sheets]
   P --> S[system/<br/>lifecycle · token rules · quality gates]
   S --> D[✅ verified output<br/>+ STATUS.md]
 ```
