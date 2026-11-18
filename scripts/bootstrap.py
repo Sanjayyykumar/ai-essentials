@@ -11,6 +11,9 @@ Ends with a checklist and writes .bootstrap.json (agents read it to know setup i
 """
 import argparse, datetime, json, os, platform, shutil, subprocess, sys
 
+for _s in (sys.stdout, sys.stderr):  # Windows consoles default to cp1252
+    try: _s.reconfigure(encoding="utf-8", errors="replace")
+    except Exception: pass
 HUB = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WIN, MAC = os.name == "nt", sys.platform == "darwin"
 MAN = json.load(open(os.path.join(HUB, "libraries", "install.json"), encoding="utf-8"))
