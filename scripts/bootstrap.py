@@ -23,7 +23,7 @@ def exp(p): return os.path.abspath(os.path.expanduser(p))
 def which(c): return shutil.which(c)
 def sh(cmd, cwd=None, quiet=False):
     try:
-        r = subprocess.run(cmd, cwd=cwd, capture_output=quiet, text=True, shell=isinstance(cmd, str))
+        r = subprocess.run(cmd, cwd=cwd, capture_output=quiet, text=True, encoding="utf-8", errors="replace", shell=isinstance(cmd, str))
         return r.returncode == 0
     except FileNotFoundError:
         return False
@@ -155,7 +155,7 @@ def main():
         claude = which("claude")
         if not claude: log("plugins", "claude CLI not found (install Claude Code, then re-run)", "skipped")
         else:
-            listed = subprocess.run([claude, "plugin", "list"], capture_output=True, text=True).stdout
+            listed = subprocess.run([claude, "plugin", "list"], capture_output=True, text=True, encoding="utf-8", errors="replace").stdout or ""
             for pl in MAN["claude_plugins"]:
                 name = pl["plugin"].split("@")[0]
                 if name in listed: log("plugins", pl["plugin"], "ok"); continue
