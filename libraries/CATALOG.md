@@ -32,6 +32,10 @@ Search: `python scripts/find.py <keyword>`. Open ONE entry file, never a whole r
 | id | use for | entry | upstream | license |
 |---|---|---|---|---|
 | diagram-design | Editorial HTML/SVG architecture, flow, sequence, ER diagrams | `04-design-diagrams-frontend/diagram-design-main/skills/diagram-design/SKILL.md` | github.com/cathrynlavery/diagram-design | MIT |
+| ui-ux-pro-max | UI/UX intelligence: styles, palettes, font pairs, design systems | `04-design-diagrams-frontend/ui-ux-pro-max-skill/.claude/skills/ui-ux-pro-max/SKILL.md` | github.com/nextlevelbuilder/ui-ux-pro-max-skill | MIT |
+| impeccable | Style guardian: one design language, anti-slop critique/polish | `04-design-diagrams-frontend/impeccable/.claude/skills/impeccable/SKILL.md` | github.com/pbakaus/impeccable | Apache-2.0 |
+| taste-skill | Kills generic, samey AI UI output | `04-design-diagrams-frontend/taste-skill/skills/taste-skill/SKILL.md` | github.com/Leonxlnx/taste-skill | MIT |
+| emil-design-eng | Animation, gestures, small UI details that feel finished | `04-design-diagrams-frontend/emil-design-eng/skills/emil-design-eng/SKILL.md` | github.com/emilkowalski/skill | MIT |
 
 ## engineering
 | id | use for | entry | upstream | license |
@@ -65,6 +69,8 @@ Search: `python scripts/find.py <keyword>`. Open ONE entry file, never a whole r
 ## video
 | id | use for | entry | upstream | license |
 |---|---|---|---|---|
+| hyperframes | HTML+GSAP → MP4 for agents; `npx hyperframes measure` analyses any video | `npx hyperframes` (skill: skills/hyperframes-video) | github.com/heygen-com/hyperframes | Apache-2.0 |
+| yt-dlp | Download reference videos (bootstrap installs it) | CLI `yt-dlp` | github.com/yt-dlp/yt-dlp | Unlicense |
 | take-one | Full short film from a request (12-role studio) | `05-video-motion/take-one-main/SKILL.md` | github.com/talsiach/take-one | MIT |
 | video-director | Code-rendered short videos (HTML/Canvas/GSAP/Three.js) | `05-video-motion/video-director-main/video-director/SKILL.md` | github.com/win4r/video-director | MIT |
 | huashu-motion | Product launch / motion graphics videos | `05-video-motion/huashu-motion-main/skills/huashu-motion/SKILL.md` | github.com/alchaincyf/huashu-motion | MIT |

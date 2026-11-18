@@ -15,3 +15,8 @@ Everything in this repository is MIT-licensed (see `LICENSE`) except the adapted
 | `skills/premium-scroll-site` | ideas from scroll-craft, rewritten | — |
 
 The repos indexed in `libraries/registry.json` are **not** included: `scripts/setup.* --fetch-missing` clones them from upstream into `vendor/` (git-ignored). Each keeps its own licence — note the AGPL (VoiceStudio) and non-commercial (XTTS weights, MusicGen) entries before commercial use.
+
+## Installed at setup, not redistributed
+
+`scripts/bootstrap.py` clones these from upstream into `vendor/` and copies their skill folders into your skills directory. They are not part of this repository:
+ui-ux-pro-max (MIT) · impeccable (Apache-2.0) · taste-skill (MIT) · emil-design-eng (MIT) · Remotion skills (see repo; Remotion needs a company licence for larger teams) · lemo-opuscar plugin (MIT) · karpathy-skills plugin (MIT).

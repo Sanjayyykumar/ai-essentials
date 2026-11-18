@@ -306,6 +306,60 @@
    "license": "see repo",
    "local_path": "06-audio-voice/free-voice-clone-main",
    "entry": "README.md"
+  },
+  {
+   "id": "ui-ux-pro-max",
+   "domain": "design",
+   "use": "UI/UX intelligence: styles, palettes, font pairs, UX rules, design systems",
+   "upstream": "github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+   "license": "MIT",
+   "local_path": "04-design-diagrams-frontend/ui-ux-pro-max-skill",
+   "entry": ".claude/skills/ui-ux-pro-max/SKILL.md"
+  },
+  {
+   "id": "impeccable",
+   "domain": "design",
+   "use": "Style guardian: one design language, anti-AI-slop critique and polish commands",
+   "upstream": "github.com/pbakaus/impeccable",
+   "license": "Apache-2.0",
+   "local_path": "04-design-diagrams-frontend/impeccable",
+   "entry": ".claude/skills/impeccable/SKILL.md"
+  },
+  {
+   "id": "taste-skill",
+   "domain": "design",
+   "use": "Kills generic, samey AI UI output; taste references and assets",
+   "upstream": "github.com/Leonxlnx/taste-skill",
+   "license": "MIT",
+   "local_path": "04-design-diagrams-frontend/taste-skill",
+   "entry": "skills/taste-skill/SKILL.md"
+  },
+  {
+   "id": "emil-design-eng",
+   "domain": "design",
+   "use": "Emil Kowalski design engineering: animation, gestures, the small UI details",
+   "upstream": "github.com/emilkowalski/skill",
+   "license": "MIT",
+   "local_path": "04-design-diagrams-frontend/emil-design-eng",
+   "entry": "skills/emil-design-eng/SKILL.md"
+  },
+  {
+   "id": "hyperframes",
+   "domain": "video",
+   "use": "HTML+GSAP → MP4 renderer for agents; also measures cuts/motion/look of any video (npx hyperframes)",
+   "upstream": "github.com/heygen-com/hyperframes",
+   "license": "Apache-2.0",
+   "local_path": "",
+   "entry": ""
+  },
+  {
+   "id": "yt-dlp",
+   "domain": "video",
+   "use": "Download reference videos for style study (installed by bootstrap)",
+   "upstream": "github.com/yt-dlp/yt-dlp",
+   "license": "Unlicense",
+   "local_path": "",
+   "entry": ""
   }
  ],
  "default_local_root": "vendor/library"

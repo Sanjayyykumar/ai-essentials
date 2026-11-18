@@ -20,3 +20,6 @@ vendor/
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Per-machine setup stamp
+.bootstrap.json

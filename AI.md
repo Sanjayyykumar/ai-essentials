@@ -3,8 +3,8 @@
 Works with any agent: Claude, Gemini/Antigravity, Grok, Kimi, GPT, Codex, local LLMs.
 Goal: finish the user's task end-to-end with the **fewest tokens, zero guesswork, live status, verified output**.
 
-## 0. New machine
-Run `scripts/setup.ps1 -Engines` (Windows) or `scripts/setup.sh --engines` (Linux/macOS/WSL), then `python scripts/doctor.py`. Skills for Claude live in `skills/` (setup copies them to ~/.claude/skills). Library repos: `vendor/library/` (env AI_LIBRARY_ROOT). Zip for another PC: `scripts/pack.ps1`.
+## 0. First run on a machine (do this before anything else)
+If `.bootstrap.json` is missing next to this file, or says `"ok": false`: run `python scripts/bootstrap.py` (Windows without Python: `scripts\setup.ps1`). It is idempotent and installs only what is missing: tools (git, node, ffmpeg, yt-dlp), the video studio + voice model, own and external skills into `~/.claude/skills` and `~/.agents/skills`, and Claude Code plugins. Tell the user what it installed, then ask them to restart the agent so new skills load. Everything it installs is listed in `libraries/install.json` (edit that file to add more). Check anytime: `python scripts/bootstrap.py --check`.
 
 ## 1. Boot protocol (≤ 30 s, ≤ 2 k tokens)
 1. Read this file only.
@@ -24,10 +24,10 @@ Run `scripts/setup.ps1 -Engines` (Windows) or `scripts/setup.sh --engines` (Linu
 | Task signal | Open | Library hits (see CATALOG) |
 |---|---|---|
 | code, app, API, bug, deploy, DB | `playbooks/development.md` | e2eengine, skills-main, karpathy, playwright-cli, agent-skills |
-| video, film, explainer, demo, edit, reel | `studio/SYSTEM.md` → `playbooks/video.md` | **Video studio (VIDEO_ROOT/studio/make.py)**, lemo-opuscar, remotion-skills, manim-skill, video-toolkit, take-one, video-director, huashu-motion, argo |
+| video, film, explainer, demo, edit, reel, "edit like these videos" | `studio/SYSTEM.md` → `playbooks/video.md`; references → `skills/reference-style` | **Video studio (VIDEO_ROOT/studio/make.py, reel.py, reference.py)**, HyperFrames, Remotion, lemo-opuscar, remotion-skills, manim-skill, video-toolkit, take-one, video-director, huashu-motion, argo |
 | image, illustration, photo, thumbnail | `studio/SYSTEM.md` → `playbooks/image.md` | code render (HTML/canvas), GPU kit image_flux.py, cloud (ElevenLabs/Canva) |
 | animation, motion, Lottie, GSAP, shaders | `playbooks/animation.md` | rossark-motion, reanimate, shaders, e2e ui-motion / lottie-animation |
-| UI, UX, landing page, brand, poster | `playbooks/design.md` | diagram-design, e2e ui-ux-designer / ux-laws |
+| UI, UX, landing page, brand, poster | `playbooks/design.md` | skills ui-ux-pro-max · impeccable · taste-skill · emil-design-eng, diagram-design |
 | logo, logo animation | `playbooks/logo.md` | e2e vector-illustration |
 | SVG create/edit/optimize | `playbooks/svg.md` + `libraries/offline/svg.md` | — |
 | voice, TTS, music, sound, subtitles | `studio/SYSTEM.md` → `playbooks/audio.md` | Kokoro, Indic Parler-TTS, faster-whisper, chatterbox, XTTS, Pixabay (skills/pixabay-audio), earshot |
