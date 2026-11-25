@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Token cost of the hub's context files.   python scripts/tokens.py   ·   --check (exit 1 if over budget)
 Uses tiktoken when installed (close to most vendors), else ~4 chars/token. Budgets keep the always-loaded part tiny."""
+import sys as _sys
+for _s in (_sys.stdout, _sys.stderr):  # Windows consoles/pipes default to cp1252
+    try: _s.reconfigure(encoding="utf-8", errors="replace")
+    except Exception: pass
 import argparse, glob, os, re, sys
 HUB = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BUDGET = {"KERNEL.md": 800, "AI.md": 1800}   # KERNEL is loaded every session; AI.md only when routing

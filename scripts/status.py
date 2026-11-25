@@ -3,6 +3,10 @@
   python scripts/status.py set PHASE "now text" [--step 3/7] [--next "..."] [--blocker "..."] [--done "item"] [--out path] [--proof "P2 (verify.py)"]
   python scripts/status.py show
 Writes STATUS.md in the current working directory (or $AI_STATUS_FILE)."""
+import sys as _sys
+for _s in (_sys.stdout, _sys.stderr):  # Windows consoles/pipes default to cp1252
+    try: _s.reconfigure(encoding="utf-8", errors="replace")
+    except Exception: pass
 import os, sys, re, datetime, argparse
 F = os.environ.get("AI_STATUS_FILE") or (os.path.join(".ai", "STATUS.md") if os.path.isdir(".ai") else "STATUS.md")
 KEYS = ["phase","step","updated","now","done","next","blockers","assumptions","outputs","proof"]
