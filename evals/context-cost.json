@@ -1,0 +1,17 @@
+{
+ "_doc": "What each task type loads under the hub's routing vs. a naive 'read the whole system' approach. scripts/evals.py measures both. Paths are hub-relative; globs allowed.",
+ "naive": ["AI.md", "system/*.md", "playbooks/*.md", "recon/*.md", "studio/SYSTEM.md", "skills/*/SKILL.md"],
+ "always": ["KERNEL.md"],
+ "scenarios": [
+  {"task": "rename a variable / fix a typo", "tier": "L", "opens": []},
+  {"task": "resume yesterday's project", "tier": "M", "opens": ["templates/ai/README.md"]},
+  {"task": "add a feature with tests", "tier": "M", "opens": ["playbooks/development.md"]},
+  {"task": "debug a failing test", "tier": "M", "opens": ["skills/diagnosing-bugs/SKILL.md", "system/04-proof-and-self-heal.md"]},
+  {"task": "review a PR", "tier": "M", "opens": ["system/05-universal-flow.md"]},
+  {"task": "edit a video from references", "tier": "M", "opens": ["studio/SYSTEM.md", "playbooks/video.md", "skills/reference-style/SKILL.md"]},
+  {"task": "design a logo + animation", "tier": "M", "opens": ["playbooks/logo.md", "libraries/offline/svg.md"]},
+  {"task": "build an app from a screenshot", "tier": "H", "opens": ["system/05-universal-flow.md", "playbooks/development.md", "playbooks/design.md", "system/06-precision.md"]},
+  {"task": "research an unknown technology", "tier": "H", "opens": ["recon/RECON.md", "recon/methods.md"]},
+  {"task": "unclear task, first time", "tier": "M", "opens": ["AI.md"]}
+ ]
+}

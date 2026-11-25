@@ -1,3 +1,3 @@
 # GEMINI.md
-This repo is agent-neutral. **Read `AI.md` first and follow its Router.** Nothing in this file overrides AI.md.
-First run on a new machine: if `.bootstrap.json` is missing, run `python scripts/bootstrap.py` (see AI.md §0).
+Working inside the hub itself. Follow `KERNEL.md` (always-on rules); open `AI.md` only for the Router/manual.
+New machine: `python scripts/bootstrap.py` installs tools + skills and links every AI so the kernel loads automatically everywhere.

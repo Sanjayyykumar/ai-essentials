@@ -1,11 +1,43 @@
 name: check
-on: [push, pull_request]
+# Proof gate: P0-P2 on a clean machine across OSes (P5 = this run green).
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: proof-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
-  check:
-    runs-on: ubuntu-latest
+  proof:
+    name: proof • ${{ matrix.os }} • py${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.10", "3.12"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: { python-version: "3.12" }
-      - run: python scripts/check.py
-      - run: python scripts/find.py video
+        with: { python-version: "${{ matrix.python }}" }
+      - name: P0-P2 proof
+        run: python scripts/verify.py
+      - name: Library search smoke test
+        run: python scripts/find.py video
+      - name: Upload proof evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: proof-${{ matrix.os }}-py${{ matrix.python }}
+          path: .proof/verify.json
+          if-no-files-found: ignore
+  summary:
+    needs: proof
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          if [ "${{ needs.proof.result }}" != "success" ]; then echo "Proof gate FAILED: NOT PROVEN."; exit 1; fi
+          echo "P0-P2 proven on every OS. P3/P4 still require deliverable evidence."

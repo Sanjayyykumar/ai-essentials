@@ -13,6 +13,7 @@ next: scene 4 transitions
 blockers: none
 assumptions: 1080p30, Indian-female voice (hf_alpha)
 outputs: [output/film_v1.mp4]
+proof: P2 (verify.py) · P3 pending — final watch-through
 ```
 CLI: `python scripts/status.py set BUILD "rendering scene 3" --step 3/7` · `python scripts/status.py show`.
 In chat: one short line per phase change ("BUILD 3/7 — rendering scene 3"). No narration beyond that.

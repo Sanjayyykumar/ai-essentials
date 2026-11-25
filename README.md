@@ -38,11 +38,18 @@ flowchart LR
 
 | | |
 |---|---|
+| 🧠 **Install once, every AI** | `python scripts/bootstrap.py` ends by running `scripts/link.py`, which registers the ≈550-token `KERNEL.md` with Claude Code, Gemini CLI/Antigravity, Codex and Windsurf (marked block, backup, `--unlink` to undo) and installs the `scout`/`builder`/`reviewer` agents. From then on no one has to say "read AI.md". Web apps (claude.ai, ChatGPT, Grok, Kimi, Cursor) get `dist/PASTE-INSTRUCTIONS.md`. |
+| 🎚️ **Effort & model routing** | Every task gets a tier (L/M/H/X → effort low/medium/high/max). `python scripts/models.py H` prints the best model per vendor; agents say so in one line when the current model is a poor fit. |
+| 🗂️ **Project brain** | `python scripts/project.py init` creates `.ai/` (PROJECT · TASKS · STATUS · DECISIONS · HANDOFF). Tasks need acceptance criteria and a verify command, respect dependencies, and any AI resumes from STATUS + `project.py next`. |
+| 🌐 **Universal flow** | Text, images, videos, audio, PDFs or URLs become a spec first, then one path from idea to finished product, with a plain-language mode for non-engineers (`system/05-universal-flow.md`). |
+| 🦸 **Superpowers + OpenCodeReview** | Bootstrap installs [Superpowers](https://github.com/obra/superpowers) (brainstorm → plan → sub-agent build → review → finish) for Claude Code, Gemini CLI and Antigravity, and [OpenCodeReview](https://github.com/alibaba/open-code-review) for precise, low-token code review that runs on your current AI (no extra key). PR-review CI: `templates/github/review.yml`. |
+| 🎯 **Precision & learning** | A decision procedure, exactness rules and an output contract per deliverable (`system/06-precision.md`); `scripts/learn.py` turns lessons seen 3× into rules; `scripts/evals.py` measures context cost per task type (plus a manual A/B protocol in `evals/`). |
 | 🧭 **One entry point** | `AI.md` routes any task to the 1–2 files it actually needs. `CLAUDE.md`, `AGENTS.md`, `GEMINI.md` and `.cursorrules` all point there. |
 | 🔁 **A 7-phase lifecycle** | INTAKE → RECON → PLAN → BUILD → VERIFY → DELIVER → LEARN. VERIFY can't be skipped: "done" means it ran, rendered or passed. |
 | 🪙 **Token economy** | Grep before read, read ranges, one skill at a time, batch tool calls, summarise long output to `STATUS.md`. |
 | 📍 **Live status** | Agents keep `STATUS.md` current (`phase · step x/y · next · blockers · assumptions`), so you can step away and check in. |
 | 🎬 **Media studio** | Routing tables for video, image and audio: code-rendered first, GPU kits when an NVIDIA card is present, cloud only when code can't do it. Pairs with [**video-generations**](https://github.com/Sanjayyykumar/video-generations). |
+| ✅ **Proof & self-heal** | `python scripts/verify.py` proves work to P0–P2 (structure · guardrails · the project's own build/tests) and writes `.proof/verify.json`. Agents report the level reached, never more, and repair failures without weakening tests. CI runs the same gate on Windows/macOS/Linux; an opt-in Claude self-heal workflow opens a fix PR. Drop-in copies for your projects: `templates/github/`. |
 | 🕵️ **Recon mode** | A method for reverse-engineering and evidence-based research when the agent doesn't know the tech. |
 | 📚 **Tool library** | `libraries/registry.json` indexes 40 open-source agent skills and tools (Remotion, Manim, Playwright, Chatterbox, humanizer…) with upstream and licence. `python scripts/find.py video` searches it offline. |
 
@@ -97,15 +104,17 @@ Everything comes from **one manifest**, [`libraries/install.json`](libraries/ins
 
 ```
 ai-essentials/
-├── AI.md              ← the only file an agent reads at boot
-├── system/            lifecycle · token economy · live status · quality gates · lessons
+├── KERNEL.md          ← always-on rules (≈550 tokens), auto-linked into every AI
+├── AI.md              ← router & manual, opened on demand
+├── agents/            Claude Code sub-agents: scout (haiku) · builder (sonnet) · reviewer (opus)
+├── system/            lifecycle · token economy · live status · quality gates · proof & self-heal · lessons
 ├── playbooks/         development · video · image · animation · design · logo · svg · audio · content
 ├── recon/             reverse engineering & deep research method
 ├── studio/            media system: routing tables, GPU kits, Hugging Face notes, engines/
 ├── skills/            15 own skills (external ones installed by bootstrap)
 ├── libraries/         install.json (bootstrap manifest) · registry.json + CATALOG.md (40 tools) · offline cheat sheets
-├── templates/         STATUS · PLAN · TASK · HANDOFF
-├── scripts/           bootstrap (one-command setup) · setup.ps1/.sh wrappers · doctor · find · status · check · pack
+├── templates/         STATUS · PLAN · TASK · HANDOFF · github/ (proof + self-heal CI for your projects)
+├── scripts/           bootstrap (one-command setup) · setup.ps1/.sh wrappers · link (register with every AI) · project (.ai brain) · models (tier → model) · tokens (budgets) · doctor · verify (proof gate) · find · status · check · pack
 └── vendor/            cloned tool repos (git-ignored, filled by setup --fetch-missing)
 ```
 
@@ -115,7 +124,7 @@ ai-essentials/
 
 ## Contributing
 
-New tool? Add it to `libraries/registry.json` and `libraries/CATALOG.md`. New domain? Add `playbooks/<domain>.md`, a router row in `AI.md`, and a gate in `system/03-quality-gates.md`. Run `python scripts/check.py` before a PR. See [CONTRIBUTING.md](CONTRIBUTING.md).
+New tool? Add it to `libraries/registry.json` and `libraries/CATALOG.md`. New domain? Add `playbooks/<domain>.md`, a router row in `AI.md`, and a gate in `system/03-quality-gates.md`. Run `python scripts/verify.py` before a PR: it must reach P2 (CI enforces it on 3 OSes). See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licence
 

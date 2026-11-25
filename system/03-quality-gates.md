@@ -10,4 +10,5 @@
 | SVG | valid XML (`xmllint`), has viewBox, no fixed width/height unless asked, optimized (svgo), renders in browser |
 | Audio | LUFS ≈ -16 (voice) / -14 (music); no clicks; correct sample rate |
 | Research | every claim has a source; conflicts noted; date-sensitive facts dated |
-Failure → fix → re-verify (max 3 loops) → else report blocker with evidence.
+Automated first: `python scripts/verify.py --project <path>` covers parse, secrets, junk, and the project's own build/tests (P0–P2). The rows above are P3 and need your eyes/tools on the actual output.
+Failure → self-heal loop (`system/04-proof-and-self-heal.md`): fix root cause → re-verify (max 3 loops) → else report blocker with evidence. Never weaken a test or gate to pass.

@@ -1,0 +1,83 @@
+{
+ "_doc": "Tier -> model per vendor. verified=true: checked on the vendor's own model page on the date in 'verified'; 'partial': vendor release notes + secondary sources; re-check sources[] before relying on it. Edit freely; verify.py checks the shape.",
+ "verified": "2026-11-20",
+ "tiers": {
+  "L": {
+   "effort": "low",
+   "use": "lookups, renames, formatting, status, small edits, search/scan"
+  },
+  "M": {
+   "effort": "medium",
+   "use": "features, bug fixes, docs, design drafts, video edits"
+  },
+  "H": {
+   "effort": "high",
+   "use": "architecture, hard debugging, research synthesis, security, multi-file refactors"
+  },
+  "X": {
+   "effort": "max",
+   "use": "long autonomous builds, deep research, novel algorithms (add sub-agents)"
+  }
+ },
+ "vendors": {
+  "claude": {
+   "verified": true,
+   "L": "claude-haiku-5-5",
+   "M": "claude-sonnet-5-5",
+   "H": "claude-opus-5-5",
+   "X": "claude-opus-5-5 (or claude-fable-5-2 where available)",
+   "switch": "Claude Code: /model (and the effort setting where offered); sub-agents scout=haiku, builder=sonnet, reviewer=opus. claude.ai: model picker."
+  },
+  "gemini": {
+   "verified": true,
+   "L": "gemini-3.5-flash-lite",
+   "M": "gemini-3.8-flash",
+   "H": "gemini-4-argon (flagship reasoning) · gemini-3.1-pro-preview",
+   "X": "gemini-4-argon, thinking budget high",
+   "switch": "Gemini CLI: /model or --model; Antigravity: model selector.",
+   "sources": [
+    "https://ai.google.dev/gemini-api/docs/models"
+   ]
+  },
+  "openai": {
+   "verified": true,
+   "L": "gpt-6-luna",
+   "M": "gpt-6.2-sol",
+   "H": "gpt-6.2-astra",
+   "X": "gpt-6.2-astra, reasoning effort max",
+   "switch": "Codex CLI: /model and reasoning effort setting; ChatGPT: model picker.",
+   "sources": [
+    "https://developers.openai.com/api/docs/models"
+   ],
+   "note": "IDs from OpenAI's model page slugs; confirm in the API reference"
+  },
+  "grok": {
+   "verified": "partial",
+   "L": "grok-build-0.1 (fast coding) or grok-4.7 at low reasoning",
+   "M": "grok-4.7",
+   "H": "grok-4.7",
+   "X": "grok-4.7 (Grok Build for long agentic runs)",
+   "switch": "model picker",
+   "sources": [
+    "https://docs.x.ai/docs/release-notes"
+   ]
+  },
+  "kimi": {
+   "verified": "partial",
+   "L": "K2.7 Code (cheaper, coding)",
+   "M": "kimi-k3",
+   "H": "kimi-k3",
+   "X": "kimi-k3 in Kimi Code / agent mode",
+   "switch": "model picker",
+   "sources": [
+    "https://platform.kimi.ai/docs"
+   ]
+  }
+ },
+ "domain_hints": {
+  "video/image/audio generation": "the LLM tier only plans and scripts; quality comes from the engine in studio/SYSTEM.md, so M is usually enough",
+  "UI/visual design": "H for a new design system or brand, M for screens in an existing system",
+  "research": "H, and use recon/RECON.md; X only for multi-day surveys",
+  "code review / security": "H, and run it in a separate session or the reviewer agent (independent check)"
+ }
+}

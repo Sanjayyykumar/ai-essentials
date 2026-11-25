@@ -360,6 +360,24 @@
    "license": "Unlicense",
    "local_path": "",
    "entry": ""
+  },
+  {
+   "id": "superpowers",
+   "domain": "engineering",
+   "use": "Agent methodology: brainstorming, writing-plans, subagent-driven-development, TDD, systematic debugging, code review, git worktrees, finishing branches, writing-skills",
+   "upstream": "github.com/obra/superpowers",
+   "license": "MIT",
+   "local_path": "(installed as plugin/extension by bootstrap)",
+   "entry": "skills/<name>/SKILL.md"
+  },
+  {
+   "id": "open-code-review",
+   "domain": "engineering",
+   "use": "Precise, low-token AI code review of diffs/PRs/commits (ocr CLI; delegate mode uses the host AI, no extra key; ocr scan for audits; GitHub Action)",
+   "upstream": "github.com/alibaba/open-code-review",
+   "license": "Apache-2.0",
+   "local_path": "01-engineering-workflow/open-code-review",
+   "entry": "skills/open-code-review-delegate/SKILL.md"
   }
  ],
  "default_local_root": "vendor/library"

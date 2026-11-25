@@ -19,4 +19,4 @@ The repos indexed in `libraries/registry.json` are **not** included: `scripts/se
 ## Installed at setup, not redistributed
 
 `scripts/bootstrap.py` clones these from upstream into `vendor/` and copies their skill folders into your skills directory. They are not part of this repository:
-ui-ux-pro-max (MIT) · impeccable (Apache-2.0) · taste-skill (MIT) · emil-design-eng (MIT) · Remotion skills (see repo; Remotion needs a company licence for larger teams) · lemo-opuscar plugin (MIT) · karpathy-skills plugin (MIT).
+ui-ux-pro-max (MIT) · impeccable (Apache-2.0) · taste-skill (MIT) · emil-design-eng (MIT) · Remotion skills (see repo; Remotion needs a company licence for larger teams) · lemo-opuscar plugin (MIT) · karpathy-skills plugin (MIT) · Superpowers plugin/extension ([obra/superpowers](https://github.com/obra/superpowers), MIT) · OpenCodeReview CLI + skills ([alibaba/open-code-review](https://github.com/alibaba/open-code-review), Apache-2.0; `templates/github/review.yml` calls its GitHub Action).

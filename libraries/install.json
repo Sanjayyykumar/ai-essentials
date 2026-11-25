@@ -1,34 +1,181 @@
 {
-  "_doc": "Single source of truth for scripts/bootstrap.py. Add a tool, skill or plugin here; every machine gets it on the next bootstrap.",
-  "tools": [
-    {"cmd": "git",     "winget": "Git.Git",            "brew": "git",     "apt": "git"},
-    {"cmd": "node",    "winget": "OpenJS.NodeJS.LTS",  "brew": "node",    "apt": "nodejs npm"},
-    {"cmd": "ffmpeg",  "winget": "Gyan.FFmpeg",        "brew": "ffmpeg",  "apt": "ffmpeg"},
-    {"cmd": "yt-dlp",  "winget": "yt-dlp.yt-dlp",      "brew": "yt-dlp",  "pip": "yt-dlp"},
-    {"cmd": "uv",      "winget": "astral-sh.uv",       "brew": "uv",      "pip": "uv", "optional": true}
-  ],
-  "repos": [
-    {"name": "video-generations", "url": "https://github.com/Sanjayyykumar/video-generations", "env": "VIDEO_ROOT",
-     "default_dir": "~/video-generations", "pip_requirements": "requirements.txt", "post": ["python studio/get_models.py"]}
-  ],
-  "npx_warmup": ["hyperframes@latest --version"],
-  "skills": {
-    "_doc": "Own skills (skills/*) are always installed. External: cloned into AI_LIBRARY_ROOT/<dir>, then <path> copied as <name>.",
-    "targets": ["~/.claude/skills", "~/.agents/skills"],
-    "external": [
-      {"name": "ui-ux-pro-max",   "repo": "github.com/nextlevelbuilder/ui-ux-pro-max-skill", "dir": "04-design-diagrams-frontend/ui-ux-pro-max-skill", "path": ".claude/skills/ui-ux-pro-max", "license": "MIT"},
-      {"name": "impeccable",      "repo": "github.com/pbakaus/impeccable",                  "dir": "04-design-diagrams-frontend/impeccable",          "path": ".claude/skills/impeccable",   "license": "Apache-2.0"},
-      {"name": "taste-skill",     "repo": "github.com/Leonxlnx/taste-skill",                "dir": "04-design-diagrams-frontend/taste-skill",         "path": "skills/taste-skill",          "license": "MIT"},
-      {"name": "emil-design-eng", "repo": "github.com/emilkowalski/skill",                   "dir": "04-design-diagrams-frontend/emil-design-eng",     "path": "skills/emil-design-eng",      "license": "MIT"},
-      {"name": "remotion-best-practices", "repo": "github.com/remotion-dev/skills", "dir": "05-video-motion/remotion-skills", "path": "skills/remotion-best-practices", "license": "see repo"},
-      {"name": "remotion-create",         "repo": "github.com/remotion-dev/skills", "dir": "05-video-motion/remotion-skills", "path": "skills/remotion-create",         "license": "see repo"},
-      {"name": "remotion-render",         "repo": "github.com/remotion-dev/skills", "dir": "05-video-motion/remotion-skills", "path": "skills/remotion-render",         "license": "see repo"},
-      {"name": "remotion-captions",       "repo": "github.com/remotion-dev/skills", "dir": "05-video-motion/remotion-skills", "path": "skills/remotion-captions",       "license": "see repo"}
-    ]
+ "_doc": "Single source of truth for scripts/bootstrap.py. Add a tool, skill or plugin here; every machine gets it on the next bootstrap.",
+ "tools": [
+  {
+   "cmd": "git",
+   "winget": "Git.Git",
+   "brew": "git",
+   "apt": "git"
   },
-  "claude_plugins": [
-    {"marketplace": "forrestchang/andrej-karpathy-skills", "plugin": "andrej-karpathy-skills@karpathy-skills"},
-    {"marketplace": "lemomo-ai/lemo-opuscar", "local_dir": "05-video-motion/lemo-opuscar", "repo": "github.com/lemomo-ai/lemo-opuscar", "plugin": "lemo-opuscar@lemolab"}
+  {
+   "cmd": "node",
+   "winget": "OpenJS.NodeJS.LTS",
+   "brew": "node",
+   "apt": "nodejs npm"
+  },
+  {
+   "cmd": "ffmpeg",
+   "winget": "Gyan.FFmpeg",
+   "brew": "ffmpeg",
+   "apt": "ffmpeg"
+  },
+  {
+   "cmd": "yt-dlp",
+   "winget": "yt-dlp.yt-dlp",
+   "brew": "yt-dlp",
+   "pip": "yt-dlp"
+  },
+  {
+   "cmd": "uv",
+   "winget": "astral-sh.uv",
+   "brew": "uv",
+   "pip": "uv",
+   "optional": true
+  },
+  {
+   "cmd": "ocr",
+   "npm": "@alibaba-group/open-code-review",
+   "note": "OpenCodeReview CLI (needs git >= 2.41)"
+  }
+ ],
+ "repos": [
+  {
+   "name": "video-generations",
+   "url": "https://github.com/Sanjayyykumar/video-generations",
+   "env": "VIDEO_ROOT",
+   "default_dir": "~/video-generations",
+   "pip_requirements": "requirements.txt",
+   "post": [
+    "python studio/get_models.py"
+   ]
+  }
+ ],
+ "npx_warmup": [
+  "hyperframes@latest --version"
+ ],
+ "skills": {
+  "_doc": "Own skills (skills/*) are always installed. External: cloned into AI_LIBRARY_ROOT/<dir>, then <path> copied as <name>.",
+  "targets": [
+   "~/.claude/skills",
+   "~/.agents/skills"
   ],
-  "connectors_note": "Connectors (Figma, Canva, ElevenLabs…) are account settings, not files: connect them once at claude.ai → Settings → Connectors."
+  "external": [
+   {
+    "name": "ui-ux-pro-max",
+    "repo": "github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+    "dir": "04-design-diagrams-frontend/ui-ux-pro-max-skill",
+    "path": ".claude/skills/ui-ux-pro-max",
+    "license": "MIT"
+   },
+   {
+    "name": "impeccable",
+    "repo": "github.com/pbakaus/impeccable",
+    "dir": "04-design-diagrams-frontend/impeccable",
+    "path": ".claude/skills/impeccable",
+    "license": "Apache-2.0"
+   },
+   {
+    "name": "taste-skill",
+    "repo": "github.com/Leonxlnx/taste-skill",
+    "dir": "04-design-diagrams-frontend/taste-skill",
+    "path": "skills/taste-skill",
+    "license": "MIT"
+   },
+   {
+    "name": "emil-design-eng",
+    "repo": "github.com/emilkowalski/skill",
+    "dir": "04-design-diagrams-frontend/emil-design-eng",
+    "path": "skills/emil-design-eng",
+    "license": "MIT"
+   },
+   {
+    "name": "remotion-best-practices",
+    "repo": "github.com/remotion-dev/skills",
+    "dir": "05-video-motion/remotion-skills",
+    "path": "skills/remotion-best-practices",
+    "license": "see repo"
+   },
+   {
+    "name": "remotion-create",
+    "repo": "github.com/remotion-dev/skills",
+    "dir": "05-video-motion/remotion-skills",
+    "path": "skills/remotion-create",
+    "license": "see repo"
+   },
+   {
+    "name": "remotion-render",
+    "repo": "github.com/remotion-dev/skills",
+    "dir": "05-video-motion/remotion-skills",
+    "path": "skills/remotion-render",
+    "license": "see repo"
+   },
+   {
+    "name": "remotion-captions",
+    "repo": "github.com/remotion-dev/skills",
+    "dir": "05-video-motion/remotion-skills",
+    "path": "skills/remotion-captions",
+    "license": "see repo"
+   },
+   {
+    "name": "open-code-review-delegate",
+    "repo": "github.com/alibaba/open-code-review",
+    "dir": "01-engineering-workflow/open-code-review",
+    "path": "skills/open-code-review-delegate",
+    "license": "Apache-2.0"
+   },
+   {
+    "name": "open-code-review",
+    "repo": "github.com/alibaba/open-code-review",
+    "dir": "01-engineering-workflow/open-code-review",
+    "path": "skills/open-code-review",
+    "license": "Apache-2.0"
+   }
+  ]
+ },
+ "claude_plugins": [
+  {
+   "marketplace": "forrestchang/andrej-karpathy-skills",
+   "plugin": "andrej-karpathy-skills@karpathy-skills"
+  },
+  {
+   "marketplace": "lemomo-ai/lemo-opuscar",
+   "local_dir": "05-video-motion/lemo-opuscar",
+   "repo": "github.com/lemomo-ai/lemo-opuscar",
+   "plugin": "lemo-opuscar@lemolab"
+  },
+  {
+   "marketplace": "anthropics/claude-plugins-official",
+   "plugin": "superpowers@claude-plugins-official"
+  }
+ ],
+ "connectors_note": "Connectors (Figma, Canva, ElevenLabs…) are account settings, not files: connect them once at claude.ai → Settings → Connectors.",
+ "harness_plugins": [
+  {
+   "name": "superpowers (Gemini CLI)",
+   "cli": "gemini",
+   "check": "gemini extensions list",
+   "marker": "superpowers",
+   "install": "gemini extensions install https://github.com/obra/superpowers"
+  },
+  {
+   "name": "superpowers (Antigravity)",
+   "cli": "agy",
+   "install": "agy plugin install https://github.com/obra/superpowers"
+  },
+  {
+   "name": "superpowers (Codex)",
+   "cli": "codex",
+   "manual": "in Codex run /plugins, search 'superpowers', Install"
+  },
+  {
+   "name": "superpowers (Kimi Code)",
+   "cli": "kimi",
+   "manual": "in Kimi Code run /plugins install https://github.com/obra/superpowers"
+  },
+  {
+   "name": "superpowers (Cursor)",
+   "cli": "cursor",
+   "manual": "Cursor: install the Superpowers plugin from its plugin marketplace"
+  }
+ ]
 }

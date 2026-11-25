@@ -19,6 +19,8 @@ if vr:
     print("\n[models]")
     for f in ("models/kokoro-v1.0.int8.onnx", "models/voices-v1.0.bin", "models/faster-whisper-small/model.bin"):
         print(ok(os.path.exists(os.path.join(vr, f))), f)
+print("\n[AI links]  (fix: python scripts/link.py)")
+subprocess.run([__import__("sys").executable, os.path.join(hub, "scripts", "link.py"), "--check"])
 print("\n[hub]")
 for f in ("AI.md", "studio/SYSTEM.md", "libraries/registry.json", "vendor/library", "skills"):
     print(ok(os.path.exists(os.path.join(hub, f))), f)

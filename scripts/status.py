@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Live status for any AI agent. Usage:
-  python scripts/status.py set PHASE "now text" [--step 3/7] [--next "..."] [--blocker "..."] [--done "item"] [--out path]
+  python scripts/status.py set PHASE "now text" [--step 3/7] [--next "..."] [--blocker "..."] [--done "item"] [--out path] [--proof "P2 (verify.py)"]
   python scripts/status.py show
 Writes STATUS.md in the current working directory (or $AI_STATUS_FILE)."""
 import os, sys, re, datetime, argparse
-F = os.environ.get("AI_STATUS_FILE", "STATUS.md")
-KEYS = ["phase","step","updated","now","done","next","blockers","assumptions","outputs"]
+F = os.environ.get("AI_STATUS_FILE") or (os.path.join(".ai", "STATUS.md") if os.path.isdir(".ai") else "STATUS.md")
+KEYS = ["phase","step","updated","now","done","next","blockers","assumptions","outputs","proof"]
 PHASES = {"INTAKE","RECON","PLAN","BUILD","VERIFY","DELIVERED","BLOCKED"}
 def load():
     d = {k: "" for k in KEYS}
@@ -21,7 +21,7 @@ def save(d):
 def main():
     p = argparse.ArgumentParser(); s = p.add_subparsers(dest="cmd", required=True)
     a = s.add_parser("set"); a.add_argument("phase"); a.add_argument("now")
-    for o in ["step","next","blocker","done","out","assume"]: a.add_argument("--"+o)
+    for o in ["step","next","blocker","done","out","assume","proof"]: a.add_argument("--"+o)
     s.add_parser("show"); x = p.parse_args()
     d = load()
     if x.cmd == "show": print(open(F, encoding="utf-8").read() if os.path.exists(F) else "no STATUS.md"); return
@@ -30,6 +30,7 @@ def main():
     d.update(phase=ph, now=x.now, updated=datetime.datetime.now().isoformat(timespec="minutes"))
     if x.step: d["step"] = x.step
     if x.next: d["next"] = x.next
+    if x.proof: d["proof"] = x.proof
     if x.blocker: d["blockers"] = x.blocker
     elif ph != "BLOCKED" and not d["blockers"]: d["blockers"] = "none"
     for key, val in (("done", x.done), ("outputs", x.out), ("assumptions", x.assume)):

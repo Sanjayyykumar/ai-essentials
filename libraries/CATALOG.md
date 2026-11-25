@@ -79,3 +79,9 @@ Search: `python scripts/find.py <keyword>`. Open ONE entry file, never a whole r
 
 ## Offline cheat sheets (`libraries/offline/`)
 ffmpeg.md · svg.md · motion.md · image-prompts.md · git.md · web-stack.md
+
+## methodology & review
+| id | use for | entry | upstream | license |
+|---|---|---|---|---|
+| superpowers | brainstorm → plan → subagent build → review → finish; TDD; debugging; worktrees; writing-skills | plugin (bootstrap) | github.com/obra/superpowers | MIT |
+| open-code-review | precise low-token code review (`ocr delegate`, `ocr review`, `ocr scan`, GitHub Action) | `01-engineering-workflow/open-code-review/skills/` | github.com/alibaba/open-code-review | Apache-2.0 |

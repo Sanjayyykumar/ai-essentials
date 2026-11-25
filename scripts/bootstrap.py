@@ -6,7 +6,8 @@ Idempotent: safe to re-run; it only installs what is missing. Driven by librarie
     python scripts/bootstrap.py --captions   # + Whisper caption model (~460 MB)
     python scripts/bootstrap.py --check      # report only, change nothing
 
-Flags: --skip-tools --skip-skills --skip-plugins --skip-studio --video-root DIR
+Flags: --skip-tools --skip-skills --skip-plugins --skip-studio --skip-link --video-root DIR
+The link step registers KERNEL.md with every AI (scripts/link.py; backups, reversible with --unlink).
 Ends with a checklist and writes .bootstrap.json (agents read it to know setup is done).
 """
 import argparse, datetime, json, os, platform, shutil, subprocess, sys
@@ -76,6 +77,8 @@ def install_tool(t, check):
         done = sh(["brew", "install", t["brew"]])
     elif t.get("apt") and which("apt-get"):
         done = sh(f"sudo apt-get install -y {t['apt']}")
+    if not done and t.get("npm") and which("npm"):
+        done = sh([which("npm"), "install", "-g", t["npm"]], quiet=True)
     if not done and t.get("pip"):
         done = sh([sys.executable, "-m", "pip", "install", "--user", "-q", t["pip"]])
     refresh_path()
@@ -98,7 +101,7 @@ def copy_skill(src, name, targets, check):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    for f in ("full", "captions", "check", "skip-tools", "skip-skills", "skip-plugins", "skip-studio"):
+    for f in ("full", "captions", "check", "skip-tools", "skip-skills", "skip-plugins", "skip-studio", "skip-link"):
         p.add_argument("--" + f, action="store_true")
     p.add_argument("--video-root"); a = p.parse_args()
     print(f"AI Essentials bootstrap · {platform.system()} {platform.release()} · Python {platform.python_version()}")
@@ -169,6 +172,23 @@ def main():
                     if clone(pl["repo"], local, False): src = local
                 sh([claude, "plugin", "marketplace", "add", src], quiet=True)
                 ok = sh([claude, "plugin", "install", pl["plugin"]], quiet=True); log("plugins", pl["plugin"], "installed" if ok else "FAILED")
+
+    if not a.skip_plugins and MAN.get("harness_plugins"):
+        step("plugins for other AIs (Gemini, Antigravity, Codex, Kimi, Cursor)")
+        for h in MAN["harness_plugins"]:
+            cli = which(h["cli"])
+            if not cli: log("ai-plugins", f"{h['name']}: {h['cli']} not installed", "skipped"); continue
+            if h.get("manual"): log("ai-plugins", f"{h['name']}: {h['manual']}", "manual"); continue
+            if h.get("check"):
+                out = subprocess.run(h["check"], shell=True, capture_output=True, text=True, encoding="utf-8", errors="replace").stdout or ""
+                if h.get("marker", "") in out: log("ai-plugins", h["name"], "ok"); continue
+            if a.check: log("ai-plugins", h["name"], "missing"); continue
+            ok = sh(h["install"], quiet=True); log("ai-plugins", h["name"], "installed" if ok else "FAILED")
+
+    if not a.skip_link:
+        step("link AIs (kernel auto-loads in Claude Code, Gemini CLI/Antigravity, Codex, Windsurf)")
+        ok = sh([sys.executable, os.path.join(HUB, "scripts", "link.py")] + (["--check"] if a.check else []))
+        log("link", "global rules + Claude agents (scripts/link.py)", "ok" if ok else ("missing" if a.check else "FAILED"))
 
     bad = [r for r in results if r[2] in ("FAILED", "missing")]
     step("checklist")
